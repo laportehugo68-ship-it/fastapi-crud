@@ -1,0 +1,33 @@
+# —— Python / FastAPI
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+.pytest_cache/
+.coverage
+.cache/
+
+# —— Virtual env
+venv/
+ENV/
+env/
+.env/
+
+# —— Databases (locales)
+*.db
+*.sqlite3
+
+# —— Editor / SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# —— Node (si algún día añades tooling frontend)
+node_modules/
+
+# —— Logs
+*.log
