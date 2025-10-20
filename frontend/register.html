@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - FastAPI CRUD</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <h1>📝 Crear cuenta</h1>
+        <form id="registerForm" class="auth-form">
+            <input type="text" id="username" placeholder="Usuario" required>
+            <input type="email" id="email" placeholder="Correo electrónico" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="submit">Registrarme</button>
+        </form>
+        <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+       document.getElementById("registerForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const username = document.getElementById("username").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    const response = await fetch(`http://127.0.0.1:8000/register?username=${encodeURIComponent(username)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`, {
+      method: "POST"
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      Swal.fire({
+        icon: "success",
+        title: "¡Cuenta creada!",
+        text: "Ahora puedes iniciar sesión ✅",
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        window.location.href = "login.html";
+      });
+    } else {
+      // 🔧 Mostrar correctamente los errores del backend
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: data.detail || JSON.stringify(data) || "No se pudo registrar el usuario ❌",
+      });
+    }
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Error de conexión",
+      text: "No se pudo conectar con el servidor 😞",
+    });
+  }
+});
+    </script>
+</body>
+</html>
