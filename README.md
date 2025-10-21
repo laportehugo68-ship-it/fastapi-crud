@@ -65,7 +65,7 @@ Follow these steps to run the project locally 👇
 
 ```bash
 # 1️⃣ Clone the repository
-git clone https://github.com/hugolaporte/fastapi-crud.git
+git clone https://github.com/laportehugo68-ship-it/fastapi-crud.git
 cd fastapi-crud
 
 # 2️⃣ Create and activate the virtual environment
